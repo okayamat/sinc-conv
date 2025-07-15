@@ -3,7 +3,6 @@
 #include <Eigen/LU>
 #include "DE_trans.h"
 #include "sigma.h"
-#include <math.h>
 int fresnl(double xxa, double *ssa, double *cca );
 
 using Eigen::MatrixXd;
