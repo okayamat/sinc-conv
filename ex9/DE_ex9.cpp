@@ -1,0 +1,77 @@
+#include <iostream>
+#include <Eigen/Core>
+#include <unsupported/Eigen/MatrixFunctions>
+#include "DE_trans.h"
+#include "sigma.h"
+
+using Eigen::MatrixXd;
+using Eigen::VectorXd;
+
+double g(double x)
+{
+  return sqrt(x);
+}
+
+double p(double x)
+{
+  double val = 0;
+
+  if (x > 1) {
+    val = 2*(x - 1)*sqrt(x - 1)/3.0;
+  }
+
+  return val;
+}
+
+int main()
+{
+  double a = 0;
+  double b = 2;
+  double d = 1.57; // M_PI_2 - eps
+  double x, y, err, maxerr;
+  int DIV = 200;
+
+  for (int N = 2; N <= 80; N += 2) {
+    int n = 2*N + 1;
+    double h = log(2 * d * N) / N;
+
+    MatrixXd A_n(n,n);
+    MatrixXd F_n(n,n);
+
+    VectorXd g_n(n);
+    VectorXd p_n(n);
+
+    // A_n = h * I^(-1) * diag[phi'(jh)]
+    for (int j = -N; j <= N; j++) {
+      for (int i = -N; i <= N; i++) {
+        A_n(i+N, j+N)  = 0.5 + (double)sigma[i - j];
+        A_n(i+N, j+N) *= h * DE_trans_div(a, b, j*h);
+      }
+    }
+
+    // g_n = (g(phi(-Nh)), ... , g(phi(Nh)))
+    for (int j = -N; j <= N; j++) {
+      g_n(j+N) = g(DE_trans(a, b, j*h));
+    }
+
+    //  F_n = -(A_n)^(-1)
+    F_n = -A_n.inverse();
+    p_n = A_n * F_n.exp() * g_n;
+
+    maxerr = 0;
+    for (int k = 1; k < DIV; k++) {
+      x = (double)k * (b - a) / (double)DIV;
+      y = 0;
+      for (int j = -N; j <= N; j++) {
+        y += p_n(j+N) * DE_basis_func(j, N, N, a, b, x, h);
+      }
+      err = abs(p(x) - y);
+      maxerr = fmax(err, maxerr);
+    }
+
+    std::cout << n << "\t" << maxerr << std::endl;
+
+  }
+
+  return EXIT_SUCCESS;
+}
