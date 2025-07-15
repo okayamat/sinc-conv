@@ -21,7 +21,7 @@ polevl.cpp, fresnl.cpp) are included.
 Each program investigates maximum approximation error among 200 equally
 spaced points over the interval (0, 2), increasing a truncation number N
 as N = 2, 4, 6, 8, 10, ..., then outputs n=2N+1 (the number of function
-evaluation) and maximum error.
+evaluations) and maximum error.
 
 ## Results
 Outputs by those programs are stored in data/ directory, with .dat extension.
