@@ -25,7 +25,7 @@ int main()
 {
   double a = 0;
   double b = 2;
-  double d = 2.355; // (3/4)*(M_PI - eps)
+  double d = 2.35; // (3/4)*(M_PI - eps)
   double x, y, err, maxerr;
   int DIV = 200;
 
