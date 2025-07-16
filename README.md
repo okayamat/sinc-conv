@@ -5,8 +5,8 @@ Sinc convolution for a finite interval
 These programs approximate the indefinite convolutions conducted in [1],
 which are approximated by the following two formulas:
 
-* Sinc convolution combined with the Single-Exponential (SE) transformation [2]
-* Sinc convolution combined with the Double-Exponential (DE) transformation [1]
+* Sinc convolution combined with the single-exponential (SE) transformation [2]
+* Sinc convolution combined with the double-exponential (DE) transformation [1]
 
 The name of the program denotes the example number and the approximation
 formula. For example, the program SE_ex1.cpp approximates the indefinite
