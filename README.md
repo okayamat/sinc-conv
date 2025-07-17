@@ -38,7 +38,7 @@ Library: Eigen 3.4.0
 ## References
 [1] T. Okayama:
  Refinement of the theory and convergence of the Sinc convolution,
- in preparation.  
+ arXiv:2507.12406 [math.NA], July 2025.  
 [2] F. Stenger:
  Collocating convolutions, Mathematics of Computation, Vol. 64 (1995),
  pp. 211--235.
