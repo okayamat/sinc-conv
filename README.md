@@ -14,7 +14,7 @@ convolution in Example 1 using the Sinc convolution combined with the SE
 transformation.
 
 For all examples, Eigen (https://eigen.tuxfamily.org/) is needed for
-linear algebra computation. In some examples, Cephes Math Library is
+linear algebra computation. For some examples, Cephes Math Library is
 used for computation of Fresnel integrals, and necessary files (mconf.h,
 polevl.cpp, fresnl.cpp) are included.
 
